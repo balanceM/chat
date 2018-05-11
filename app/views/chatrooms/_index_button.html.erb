@@ -1,0 +1,10 @@
+<div name="chatroom_buttons" class="col-sm-6 col-sm-offset-4" >
+  <%= link_to 'Show', chatroom, name: "show", class: join?(chatroom) ? "btn btn-success" : " btn btn-default disabled" %>
+      <span id="messages_num" class="badge">0</span>
+  <%= (link_to "Join", chatroom_chatroom_users_path(chatroom), method: :post, remote: true, class: "btn btn-default", type: "checkbox", data: {toggle: "toggle"}) if not join?(chatroom) %>
+  <%= link_to "Leave", chatroom_chatroom_users_path(chatroom), method: :delete, remote: true, class: "btn btn-default" if join?(chatroom) %>
+  <% if current_user && current_user.admin? %>
+    <%= link_to 'Edit', edit_chatroom_path(chatroom), class: "btn btn-default" %>
+    <%= link_to 'Destroy', chatroom, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  <% end %>
+</div>

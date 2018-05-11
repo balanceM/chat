@@ -1,0 +1,12 @@
+$("[data-chatroom-id=<%= @chatroom.id %>]").find("[name='show']").removeClass("disabled")
+var chatroom_lis = $("#chatrooms").find('li[value="<%= @chatroom.name %>"]')
+if( chatroom_lis.length <= 0 ){
+  var new_li_html = '<li value="<%= @chatroom.name %>" ><STRONG><%= link_to @chatroom.name, @chatroom, class: "btn btn-success form-control" %></STRONG></li>'
+  $("#chatrooms").find('li').eq(0).prepend(new_li_html)
+  // 
+  html = '<%= j(render "chatrooms/index_button",  {chatroom: @chatroom}) %>'
+  $("[data-chatroom-id=<%= @chatroom.id %>]").find('[name="chatroom_buttons"]').replaceWith(html);
+  // 
+  App.chatrooms.unsubscribed()
+  App.chatrooms.subscribed()
+}

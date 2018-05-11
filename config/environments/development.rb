@@ -31,7 +31,7 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
@@ -58,4 +58,17 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  #
+  ActionMailer::Base.delivery_method = :smtp  
+  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.default_url_options = { :host => 'localhost', :port => 3000 }
+  ActionMailer::Base.smtp_settings = {    
+      :address => "smtp.163.com", #邮件服务器地址 
+      :port => 25,  
+      :domain => "www.163.com", #服务器域名，如xxx@yeah.net域名就是yeah.net
+      :authentication => :plain ,   
+      :user_name => "wazls3344@163.com",  #邮件用户名，如xxx@yeah.net用户名就是xxx
+      :password => "liu123"  #与登录密码不同，此处是客户端授权密码，切记！
+  }
 end

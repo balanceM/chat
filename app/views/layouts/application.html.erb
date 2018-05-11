@@ -9,7 +9,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body >
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -51,14 +51,14 @@
       </div>  <!-- /.container-fluid -->
     </nav>
 
-    <div class="fluid-container">
+    <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-2">
+        <div class="col-sm-2" style="background: #428bca;border-radius: 14px">
           <% if user_signed_in?  %>
             <h5>Chatrooms</h5>
-            <ul>
-              <% current_user.chatrooms.each do |chatroom|  %>
-                <li><%= chatroom.name %></li>
+            <ul class="list-unstyled" id="chatrooms">
+              <% current_user.chatrooms.order(id: :desc).each do |chatroom|  %>
+                <li value="<%= chatroom.name %>"><STRONG><%= link_to chatroom.name, chatroom, class: "btn btn-success form-control" %></STRONG></li>
               <% end %>
             </ul>
           <% end %>

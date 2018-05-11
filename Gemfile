@@ -65,3 +65,6 @@ gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'devise'
 gem 'devise-bootstrapped', '~> 0.1.1'
+gem 'redis'
+# 分页
+gem 'kaminari'
