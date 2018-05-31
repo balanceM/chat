@@ -53,14 +53,17 @@
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-2" style="background: #428bca;border-radius: 14px">
-          <% if user_signed_in?  %>
-            <h5>Chatrooms</h5>
-            <ul class="list-unstyled" id="chatrooms">
+        <div class="col-sm-2" style="background: #424A5D;border-radius: 14px">
+          <% if user_signed_in?  %><btn class="btn-group btn-group-lg" role="group">Chatrooms</btn>
+          <nav>
+            <ul class="nav nav-pills nav-stacked" id="chatrooms">
               <% current_user.chatrooms.order(id: :desc).each do |chatroom|  %>
-                <li value="<%= chatroom.name %>"><STRONG><%= link_to chatroom.name, chatroom, class: "btn btn-success form-control" %></STRONG></li>
+                <li value="<%= chatroom.name %>" role="presentation" class="btn btn-lg">
+                <span class="glyphicon glyphicon-home" aria-hidden="true">&nbsp</span> 
+                  <font><%= link_to chatroom.name, chatroom, style: "color:#AEB2B7;text-align:center;border-radius:0;font-size:18"%></li></font>
               <% end %>
             </ul>
+          </nav>
           <% end %>
         </div>
 
