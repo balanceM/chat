@@ -68,3 +68,6 @@ gem 'devise-bootstrapped', '~> 0.1.1'
 gem 'redis'
 # 分页
 gem 'kaminari'
+
+# uploader
+gem 'carrierwave', '~> 1.0'

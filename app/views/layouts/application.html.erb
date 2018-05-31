@@ -53,21 +53,31 @@
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-2" style="background: #424A5D;border-radius: 14px">
-          <% if user_signed_in?  %><btn class="btn-group btn-group-lg" role="group">Chatrooms</btn>
+        <div class="col-sm-2" style="background: #424A5D;border-radius: 14px; padding-top: 20px">
+          <% if user_signed_in?  %>
+          <div class="btn" style="height: 20%;width: 100%;margin-bottom: 40px" role="group">
+            <%= image_tag(current_user.avatar_url, class: "col-sm-6 img-circle img-responsive") if current_user.avatar? %>
+            <strong class="text-center h3 align-center " style="color: #f0f0f0"><%=current_user.username %></strong>
+          </div>
           <nav>
             <ul class="nav nav-pills nav-stacked" id="chatrooms">
+               <li role="presentation" class="btn btn-lg">
+                <span class="glyphicon glyphicon-home" aria-hidden="true">&nbsp</span> 
+                  <font style="color:#AEB2B7;text-align:center;border-radius:0;font-size:18"><%= link_to "我的聊天室", chatrooms_path%></font></li>
+               <li role="presentation" class="btn btn-lg">
+                <span class="glyphicon glyphicon-home" aria-hidden="true">&nbsp</span> 
+                  <font style="color:#AEB2B7;text-align:center;border-radius:0;font-size:18"><%= link_to "我的好友", users_path%></font></li>
               <% current_user.chatrooms.order(id: :desc).each do |chatroom|  %>
                 <li value="<%= chatroom.name %>" role="presentation" class="btn btn-lg">
                 <span class="glyphicon glyphicon-home" aria-hidden="true">&nbsp</span> 
-                  <font><%= link_to chatroom.name, chatroom, style: "color:#AEB2B7;text-align:center;border-radius:0;font-size:18"%></li></font>
+                  <font><%= link_to chatroom.name, chatroom, style: "color:#AEB2B7;text-align:center;border-radius:0;font-size:18"%></font></li>
               <% end %>
             </ul>
           </nav>
           <% end %>
         </div>
 
-        <div class="col-sm-10">
+        <div class="col-sm-offset-1 col-sm-8">
           <%= yield %>
         </div>
       </div>

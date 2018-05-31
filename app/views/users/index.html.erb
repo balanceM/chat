@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>user</h1>
+<% @users.each do |user| %>
+  <div class="row" data-user-id="<%= user.id %>" style="height: 10%">
+    <div class="col-sm-2">
+      <%= image_tag "base_chat.png" %>
+    </div>
+    <div class="col-sm-9">
+      <div class="row" style="margin-bottom: 10px">
+        <b class="col-sm-2">名称：</b>
+        <b><%= user.username %></b>
+      </div>
+      <div class="row">
+        <b class="col-sm-2">简介：</b>
+        <p class="col-sm-10 pre-scrollable" style="padding-left: 0; max-height: 60px">
+          Introduce the person!
+        </p>
+      </div>
+    </div>
+  </div>
+<% end %>
+<%= paginate @users, window: 2, left: 1, right: 3, param_name: :page %>
+<br>
+<%= link_to 'New user', user_registration_path %>
